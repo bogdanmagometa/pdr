@@ -1,9 +1,11 @@
+import os
 from typing import List
 import dotenv
 
 dotenv.load_dotenv(override=False);
 
-from langchain.storage import InMemoryStore
+from langchain.storage._lc_store import create_kv_docstore
+from langchain.storage import InMemoryStore, LocalFileStore
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -21,8 +23,10 @@ from pydantic import BaseModel, Field
 
 # Construct retriever
 embeddings = OpenAIEmbeddings(model='text-embedding-3-small')
-vectorstore = Chroma(embedding_function=embeddings)
-docstore = InMemoryStore()
+vectorstore = Chroma(embedding_function=embeddings, persist_directory=os.getenv('CHILD_DOCS_DIR'))
+# docstore = InMemoryStore()
+fs = LocalFileStore(os.getenv("PARENT_DOCS_DIR"))
+docstore = create_kv_docstore(fs)
 retriever = ParentDocumentRetriever(
     vectorstore=vectorstore,
     docstore=docstore,

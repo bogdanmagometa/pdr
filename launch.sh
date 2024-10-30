@@ -1,3 +1,5 @@
+export CHILD_DOCS_DIR=$(realpath chroma_persist)
+export PARENT_DOCS_DIR=$(realpath store)
 pushd pdr-ms
 uvicorn main:app --port 8000 --host localhost &
 popd
