@@ -20,6 +20,7 @@ def get_response(user_input):
             answer = ''
         yield answer
 
+st.set_page_config(page_title="ПДР чатбот")
 st.title("ПДР чатбот")
 
 if "chat_history" not in st.session_state:
