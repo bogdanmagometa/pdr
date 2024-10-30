@@ -42,7 +42,7 @@ def load_using_webbaseloader(url) -> List[Document]:
     
     return docs
 docs = load_using_webbaseloader("https://zakon.rada.gov.ua/laws/show/1306-2001-%D0%BF/print")
-retriever.add_documents(docs)
+# retriever.add_documents(docs)
 
 # Combine prompt, chat model and retriever into QA chain
 input_context_prompt = ChatPromptTemplate.from_messages([
