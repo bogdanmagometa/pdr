@@ -18,6 +18,9 @@ def get_response(user_input):
             answer = chunk['answer']
         else:
             answer = ''
+        if 'context' in chunk:
+            for i in range(len(chunk['context'])):
+                print(chunk['context'][i].page_content)
         yield answer
 
 st.set_page_config(page_title="ПДР чатбот")
