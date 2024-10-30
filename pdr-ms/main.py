@@ -1,7 +1,7 @@
 from typing import List
 import dotenv
 
-dotenv.load_dotenv(override=True);
+dotenv.load_dotenv(override=False);
 
 from langchain.storage import InMemoryStore
 from langchain.vectorstores import Chroma

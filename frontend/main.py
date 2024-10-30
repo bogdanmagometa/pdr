@@ -4,7 +4,7 @@ import time
 from langserve import RemoteRunnable
 import dotenv
 
-dotenv.load_dotenv(override=True);
+dotenv.load_dotenv(override=False);
 
 def get_response(user_input):
     hostname = os.getenv('PDR_MS_HOSTNAME')
